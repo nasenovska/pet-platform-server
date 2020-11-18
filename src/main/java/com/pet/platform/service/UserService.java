@@ -22,8 +22,4 @@ public class UserService {
     public User find(String userName) {
         return userRepository.findOneByUsername(userName);
     }
-
-    public User find(Long id) {
-        return userRepository.findOne(id);
-    }
 }

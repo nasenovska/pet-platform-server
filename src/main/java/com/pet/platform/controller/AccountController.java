@@ -14,15 +14,15 @@ import java.security.Principal;
 import static com.pet.platform.entity.Role.USER;
 
 @Slf4j
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/account")
+@RequestMapping("/api/v1/account")
 public class AccountController {
 
     private final UserService userService;
 
-    @CrossOrigin
-    @PostMapping(value = "/register")
+    @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User userRequestModel) {
 
         if (userService.find(userRequestModel.getUsername()) != null) {
@@ -38,8 +38,7 @@ public class AccountController {
         return new ResponseEntity<>(userService.save(userRequestModel), HttpStatus.CREATED);
     }
 
-    @CrossOrigin
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public Principal user(Principal principal) {
         log.info("user logged " + principal);
         return principal;
